@@ -1,0 +1,43 @@
+.key {
+    background-color: #272b2c;
+}
+
+.keyButton {
+    height: 48px; /* 12 * 4 (rem to px) */
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(239 68 68); */
+    background-color: #323738;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.4);
+    color: #71d4fe;
+}
+
+.keyButton:hover {
+    color: #fcfe71;
+    border: 2px solid; 
+    border-color: #fcfe71;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+/* .keyButton:active {
+    transform: scale(0.9);
+} */
+
+.keyButton:hover {
+    color: #fcfe71;
+  }
+  
+  .keyButton:active,
+  .active-simulated {
+    transform: scale(0.9);
+    /* box-shadow: 3px 4px 0px rgba(255, 0, 0, 0.6); */
+  }
+  
+  .active-simulated {
+    transition: transform 0.1s;
+  }

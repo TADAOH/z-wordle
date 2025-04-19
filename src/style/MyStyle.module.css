@@ -1,0 +1,103 @@
+/*MyStyle*/
+.page {
+  min-height: 100vh; /* min-h-screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color:black;
+  color: white;
+}
+
+.board {
+  border-radius: 10px;
+  background: #576468;
+  min-width: 100px;
+  width: auto;
+  height: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3px;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: inherit; */
+  width: 30px;
+  height: 30px;
+  color: #0a95b8;
+  /* background-color: #2c3031; */
+  background-color: aliceblue;
+  border-radius: 5px;
+  user-select: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+.key:active {
+  transform: scale(0.95);
+}
+
+.textarea {
+  /* width: 100%; */
+  min-width: 100px;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #71d4fe;
+  background-color: #323738;
+  box-shadow: -2px -3px 0px rgba(0, 0, 0, 0.4);
+}
+
+.guessline {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5px;
+  /* background-color: green; */
+  gap: 3px;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.boxinit {
+  background-color: rgb(236, 244, 252);
+  color: #0a87a7;
+}
+
+.boxtrue {
+  background-color: rgb(68, 190, 68);
+  color: white;
+}
+
+.boxfalse {
+  background-color: #323738;
+  color: white;
+}
+
+.boxcontain {
+  background-color: rgb(216, 216, 57);
+  color: white;
+}
+
+.guessbox {
+  padding: 15px;
+  /* background-color: yellow; */
+}

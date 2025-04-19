@@ -8,9 +8,8 @@ import getRandomWordLength from "@/libs/getRandomWordLength";
 import compareString from "@/libs/compareString";
 import Loader01 from "@/components/Load01";
 
-type keyStatusMap = { [key: string]: string; }
 
-export default function Home () {
+export default function MyKeyboardPage () {
 
     const emptyString = '     ';
     const [inputText, setInputText] = useState(emptyString);
@@ -21,13 +20,6 @@ export default function Home () {
     const [loading, setLoading] = useState(true);
     const [innerLoad, setInnerLoad] = useState(false);
     const [win, setWin] = useState(false);
-
-    const initKeyStatus: keyStatusMap = {};
-    for (let i = 0; i < 26; i++) {
-      const ch = String.fromCharCode(65 + i); // ASCII code for 'A' is 65
-      initKeyStatus[ch] = 'I';
-    }
-    const [keyStatus, setKeyStatus] = useState<keyStatusMap>(initKeyStatus);
 
     useEffect(() => {
         async function fetchAnswer() {
@@ -53,18 +45,6 @@ export default function Home () {
                 setLines((prev) => [...prev, inputText]);
                 setStatusList((prev) => [...prev, resultStatus]);
                 // setLines((prev) => [...prev, resultStatus]);
-                for (let i = 0; i < 5; i++) {
-                    const ch = inputText.charAt(i);
-                    if (resultStatus.charAt(i) === 'T') {
-                        setKeyStatus((prev) => ({ ...prev, [ch]: 'T' }));
-                    } else if (resultStatus.charAt(i) === 'C') {
-                        if (keyStatus[ch] !== 'T') {
-                            setKeyStatus((prev) => ({ ...prev, [ch]: 'C' }));
-                        }
-                    } else {
-                        setKeyStatus((prev) => ({ ...prev, [ch]: 'F' }));
-                    }
-                }
                 setInputText(emptyString);
                 setStringLen(0);
                 if (resultStatus === 'TTTTT') {
@@ -90,7 +70,6 @@ export default function Home () {
         setLines([]);
         setStatusList([]);
         setWin(false);
-        setKeyStatus(initKeyStatus);
         async function fetchAnswer() {
           const ans = await getRandomWordLength(5);
           setAnswer(ans);
@@ -107,28 +86,29 @@ export default function Home () {
 
     return (
         <main className={styles.page}>
-          {
-            win ? <div className="flex justify-center bg-blue-600 cursor-pointer">Congratulation</div>
-                 : <div className="flex justify-center">Guess the Word</div>
-          }
-            {/* <div>Guess the Word</div> */}
-            {/* <div>Answer = {answer}</div> */}
-            <div className={styles.guessbox}>          
+            <div>My Keyboard Page</div>
+            <div>Answer = {answer}</div>
+            <div className={styles.guessbox}>
+                {/* {
+                    lines? lines.map((line, index) => (
+                        <GuessLine key={index} line={line} />
+                    )) : null
+                } */}
                 {
                     Array.from({length:lines.length}).map((_, index) => (
                         <GuessLine key={index} line={lines[index]} lineStatus={statusList[index]} />
                     )) 
                 }
                 {
-                    win? <div className="flex justify-center bg-blue-600 cursor-pointer"
-                          onClick={handleWinClick}>new word</div>
+                    win? <div className="flex justify-center bg-blue-600"
+                          onClick={handleWinClick}>You Win</div>
                        : <GuessLine line={inputText} />
                 }
             </div>
             { innerLoad ? <Loader01 /> : null }
             {/* <input type="text" value={inputText} readOnly className={styles.textarea} /> */}
             {/* <textarea value={inputText} readOnly className={styles.textarea} /> */}
-            <MyKeyboard keyClick={handleKeyClick} keyStatuses={keyStatus}/>
+            <MyKeyboard keyClick={handleKeyClick}/>
         </main>
     );
 }
